@@ -105,6 +105,9 @@ int rspasm_get_symbol_address(const struct rspasm *rspasm,
   const char *name, uint32_t *addr) {
   int chk_addr;
 
+  if (rspasm->num_symbols == 0)
+    return -1;
+
   if ((chk_addr = rspasm_symbol_binary_search(
     rspasm->symbols, name, 0, rspasm->num_symbols - 1)) < 0) {
     fprintf(stderr, "Undefined symbol: %s\n", name);
